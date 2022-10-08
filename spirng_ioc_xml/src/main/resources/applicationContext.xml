@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+<!--    <bean id="StuOne" class="com.rachel.spirng_ioc_xml.pojo.Student">-->
+<!--        <property name="age" value="20"></property>-->
+<!--        <property name="gender" value="男"></property>-->
+<!--        <property name="id" value="20"></property>-->
+<!--        <property name="name" value="张三"></property>-->
+<!--    </bean>-->
+
+
+
+    <!--引入jdbcproperties,之后可以通过${jd}的方式来访问-->
+    <context:property-placeholder location="jdbc-properties.properties"></context:property-placeholder>
+
+    <bean id="studentTwo" class="com.rachel.spirng_ioc_xml.pojo.Student">
+<!--        <constructor-arg value="1002" ></constructor-arg>-->
+<!--        <constructor-arg value="李四"></constructor-arg>-->
+<!--        <constructor-arg value="33"></constructor-arg>-->
+<!--        <constructor-arg value="女"></constructor-arg>-->
+<!--        <property name="clazz" ref="ClazzOne"></property>-->
+        <property name="name" value="李四" ></property>
+        <property name="age" value="22"></property>
+        <property name="id" value="1002"></property>
+        <property name="sex" value="女"></property>
+        <property name="hobbies">
+            <array>
+                <value>跳舞</value>
+                <value>写字</value>
+                <value>说唱</value>
+                <value>看书</value>
+            </array>
+        </property>
+        <property name="teacherMap">
+            <map>
+                <entry>
+                    <key>
+                        <value>10010</value>
+                    </key>
+                    <ref bean="teacherOne"></ref>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="StudentThree" class="com.rachel.spirng_ioc_xml.pojo.Student">
+        <property name="name" value="王五" ></property>
+        <property name="age" value="20"></property>
+        <property name="id" value="1005"></property>
+        <property name="sex" value="男"></property>
+<!--        <property name="clazz" ref="ClazzOne"></property>-->
+        <property name="hobbies">
+            <array>
+                <value>唱歌</value>
+                <value>喝酒</value>
+                <value>打球</value>
+                <value>抽烟</value>
+            </array>
+        </property>
+        <property name="teacherMap">
+            <map>
+                <entry>
+                    <key>
+                        <value>10089</value>
+                    </key>
+                    <ref bean="teacherTwo"></ref>
+                </entry>
+            </map>
+        </property>
+     </bean>
+
+    <bean id="ClazzOne" class="com.rachel.spirng_ioc_xml.pojo.Clazz">
+        <property name="clazzId" value="1001"></property>
+        <property name="clazzName" value="RocketClass"></property>
+    </bean>
+
+    <bean id="ClassTwo" class="com.rachel.spirng_ioc_xml.pojo.Clazz">
+        <property name="clazzName" value="普通班"></property>
+        <property name="clazzId" value="15615"></property>
+        <property name="students">
+            <list>
+                <ref bean="studentTwo"></ref>
+                <ref bean="StudentThree"></ref>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="teacherOne" class="com.rachel.spirng_ioc_xml.pojo.Teacher">
+        <property name="teacherId" value="10010"></property>
+        <property name="teacherName" value="大宝"></property>
+    </bean>
+    <bean id="teacherTwo" class="com.rachel.spirng_ioc_xml.pojo.Teacher">
+        <property name="teacherId" value="10086"></property>
+        <property name="teacherName" value="二宝"></property>
+    </bean>
+
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"></property>
+        <property name="url" value="${jdbc.url}"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+</beans>

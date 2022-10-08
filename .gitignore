@@ -1,0 +1,15 @@
+# Project exclude paths
+/Mybatis-cache/target/
+/Mybatis-mbg/target/
+/spirng_ioc_xml/target/
+/spring-proxy/target/
+/spring-transaction/target/
+/spring_annotation/target/
+/spring_aop/target/
+/Spring_helloworld/target/
+/spring_mvc_ajax/target/
+/spring_mvc_demo/target/
+/spring_mvc_extension/target/
+/spring_mvc_helloworld/target/
+/spring_mvc_restful/target/
+/ssm/target/
